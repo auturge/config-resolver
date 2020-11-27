@@ -21,17 +21,11 @@
         "strict": true,
         "baseUrl": "./",
         "paths": {
-            "@errors": [
-                "./src/errors/index.ts"
-            ],
             "@errors/*": [
                 "./src/errors/*"
             ],
             "@functions/*": [
                 "./src/functions/*"
-            ],
-            "@model": [
-                "./src/model/index.ts"
             ],
             "@model/*": [
                 "./src/model/*"

@@ -1,5 +1,5 @@
 import { ConfigOption } from "@model/ConfigOption";
-import { ResultType } from '@model/ResultType';
+import { ResultType } from "@model/ResultType";
 import { tryGetConfig } from "./tryGetConfig";
 import { sortAlternatives } from './sortAlternatives';
 

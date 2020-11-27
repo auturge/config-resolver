@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { ConfigOption } from '@model';
+import { ConfigOption } from '@model/ConfigOption';
 import { tryResolveAlternatives } from '@functions/tryResolveAlternatives';
 
 describe('tryResolveAlternatives', () => {
