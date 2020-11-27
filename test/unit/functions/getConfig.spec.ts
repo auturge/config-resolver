@@ -7,7 +7,7 @@ import { ConfigOption } from '@model/ConfigOption';
 import { getConfig } from '@functions/getConfig';
 import * as tryGetConfig from '@functions/tryGetConfig';
 
-// eslint-disable @typescript-eslint/no-explicit-any
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 describe('getConfig', () => {
 
@@ -23,7 +23,7 @@ describe('getConfig', () => {
         { key: 'undefined', value: undefined },
     ].forEach(({ key, value }) => {
         it(`getConfig - when options argument is ${ key }, throws an error`, () => {
-            const options: IProcessResult = <any>value; // eslint-disable-line @typescript-eslint/no-explicit-any
+            const options: IProcessResult = <any>value;
 
             assert.throws(() => {
                 getConfig(options);
