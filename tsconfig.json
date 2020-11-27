@@ -1,0 +1,60 @@
+{
+    "compilerOptions": {
+        "outDir": "./build/.tsc-output",
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "lib": [
+            "es2015",
+            "dom"
+        ],
+        "allowJs": false,
+        "checkJs": false,
+        "declaration": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "noImplicitAny": false,
+        "preserveConstEnums": true,
+        "removeComments": false,
+        "sourceMap": true,
+        "strict": true,
+        "baseUrl": "./",
+        "paths": {
+            "@errors": [
+                "./src/errors/index.ts"
+            ],
+            "@errors/*": [
+                "./src/errors/*"
+            ],
+            "@functions/*": [
+                "./src/functions/*"
+            ],
+            "@model": [
+                "./src/model/index.ts"
+            ],
+            "@model/*": [
+                "./src/model/*"
+            ],
+            "@src/*": [
+                "./src/*"
+            ],
+            "@test/*": [
+                "./test/*"
+            ]
+        },
+        "types": [
+            "mocha",
+            "node"
+        ]
+    },
+    "include": [
+        "./src/**/*.ts",
+        "./test/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.d.ts",
+        "temp/**/*"
+    ]
+}

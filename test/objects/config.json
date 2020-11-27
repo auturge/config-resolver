@@ -1,0 +1,13 @@
+{
+    "source": "./package.json",
+    "destination": "./build/dev/package.json",
+    "keeplist": [
+        "name",
+        "version"
+    ],
+    "trimlist": [
+        "main",
+        "repository"
+    ],
+    "loglevel": "DEBUG"
+}
