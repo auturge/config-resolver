@@ -13,4 +13,4 @@ node_js:
     - 12.8.1
 
 after_success:
-    - npm test:report
+    - npm run ~test:report
