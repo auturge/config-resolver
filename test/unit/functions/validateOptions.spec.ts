@@ -1,10 +1,10 @@
 import { assert } from 'chai'
 import { AnyRandom, CharacterSet } from '@auturge/testing'
-import { validateType } from '@functions/validateType'
 import { AcceptableType } from '@model/AcceptableType'
 import { validateOptions } from '@functions/validateOptions'
 import { ResolverOptions } from '@model/ResolverOptions'
-import { ResolveOptions } from 'dns'
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 describe('validateOptions', () => {
 

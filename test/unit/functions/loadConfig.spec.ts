@@ -8,6 +8,8 @@ import * as paths from '@src/functions/getAbsolutePath';
 import * as pathExists from '@src/functions/pathExists';
 import * as rekwire from '@src/functions/rekwire';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 describe('loadConfig', () => {
 
     [
@@ -15,7 +17,7 @@ describe('loadConfig', () => {
         { key: 'undefined', value: undefined },
     ].forEach(({ key, value }) => {
         it(`loadConfig - when data is ${ key }, throws an error`, () => {
-            const data: IProcessResult = <any>value; // eslint-disable-line @typescript-eslint/no-explicit-any
+            const data: IProcessResult = <any>value;
 
             assert.throws(() => {
                 loadConfig(data);
@@ -31,9 +33,9 @@ describe('loadConfig', () => {
     })
 
     after(() => {
-        (<any>(paths.getAbsolutePath)).restore(); // eslint-disable-line @typescript-eslint/no-explicit-any
-        (<any>(rekwire.rekwire)).restore(); // eslint-disable-line @typescript-eslint/no-explicit-any
-        (<any>(pathExists.pathExists)).restore(); // eslint-disable-line @typescript-eslint/no-explicit-any
+        (<any>(paths.getAbsolutePath)).restore();
+        (<any>(rekwire.rekwire)).restore();
+        (<any>(pathExists.pathExists)).restore();
     })
 
     it(`loadConfig - when an error occurs loading the file, throws an error`, () => {
@@ -46,6 +48,7 @@ describe('loadConfig', () => {
         });
 
         sinon.assert.calledOnceWithExactly(getPathSpy, data.absolutePath);
+        sinon.assert.calledOnceWithExactly(pathExistsSpy, data.absolutePath);
         sinon.assert.calledOnceWithExactly(requireSpy, data.absolutePath);
     });
 });

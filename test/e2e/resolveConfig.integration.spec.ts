@@ -58,7 +58,6 @@ describe('resolveConfig - INTEGRATION', () => {
         const env = AnyRandom.string()
         const expected = expected_JS(env)
 
-        const func: FunctionType = resolveConfig(options) as FunctionType
         assert.doesNotThrow(() => {
             const func: FunctionType = resolveConfig(options) as FunctionType
             config = func(env)

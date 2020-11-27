@@ -2,12 +2,11 @@ import { assert } from "chai";
 import { ConfigOption } from '@model/ConfigOption';
 import { tryAlternatives } from '@functions/tryAlternatives';
 import { IProcessResult } from '@model/IProcessResult';
-import { AcceptableType } from '@model/AcceptableType';
 import sinon = require('sinon');
 import * as cast from '@functions/castToAcceptableTypeOrNull';
 import * as tryGetConfig from '@functions/tryGetConfig';
 
-// eslint-disable @typescript-eslint/no-explicit-any
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 describe('tryAlternatives', () => {
 
@@ -17,7 +16,7 @@ describe('tryAlternatives', () => {
         { key: 'empty', value: [] },
     ].forEach(({ key, value }) => {
         it(`tryAlternatives - when called with ${ key }, returns null`, () => {
-            const alternatives: ConfigOption[] = <any>value; // eslint-disable-line @typescript-eslint/no-explicit-any
+            const alternatives: ConfigOption[] = <any>value;
 
             const result = tryAlternatives(alternatives);
 
@@ -26,9 +25,9 @@ describe('tryAlternatives', () => {
     });
 
 
-    let castSpy, getSpy;
+    let castSpy, getSpy, badResult;
     before(() => {
-        const badResult = IProcessResult.EMPTY;
+        badResult = IProcessResult.EMPTY;
         badResult.success = true;
         badResult.output = null;
         castSpy = sinon.stub(cast, 'castToAcceptableTypeOrNull').returns(null);
@@ -49,5 +48,7 @@ describe('tryAlternatives', () => {
         const result = tryAlternatives(alternatives);
 
         assert.deepEqual(result, IProcessResult.EMPTY);
+        sinon.assert.calledOnceWithExactly(getSpy, alternatives[ 0 ]);
+        sinon.assert.calledOnceWithExactly(castSpy, badResult.output, badResult.type);
     })
 });
