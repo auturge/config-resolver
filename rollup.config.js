@@ -16,7 +16,7 @@ const includeESM = true; // esm: ES module: for bundlers
 const includeUMD = false; // emd: browser-friendly UMD build
 
 /** Code Below */
-const plugins = [tsConfigPaths(), typescript(), nodeResolve(), commonjs()];
+const plugins = [ tsConfigPaths(), typescript(), nodeResolve(), commonjs() ];
 if (minify) {
     plugins.push(terser());
 }
@@ -60,7 +60,7 @@ export default {
     watch: {
         clearScreen: false,
     },
-    input: "src/index.ts",
+    input: "src/exports.ts",
     output: output,
     plugins: plugins,
     external: [

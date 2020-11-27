@@ -1,7 +1,6 @@
 import { assert } from "chai";
 import { getAbsolutePath } from '@src/functions/getAbsolutePath';
 import * as path from 'path';
-import { AnyRandom } from '@auturge/testing';
 
 describe('getAbsolutePath', () => {
 
@@ -14,7 +13,7 @@ describe('getAbsolutePath', () => {
         { key: 'empty string', value: '' },
         { key: 'only whitespace', value: '  ' }
     ].forEach(({ key, value }) => {
-        it(`getAbsolutePath - throws when pathCandidate is ${key}`, () => {
+        it(`getAbsolutePath - throws when pathCandidate is ${ key }`, () => {
             const pathCandidate: string = <any>value; // eslint-disable-line @typescript-eslint/no-explicit-any
             assert.throws(() => {
                 getAbsolutePath(pathCandidate);
@@ -37,13 +36,4 @@ describe('getAbsolutePath', () => {
 
         assert.equal(result, absolutePath);
     });
-
-    it(`getAbsolutePath - returns null when the path does not exist`, () => {
-        const pathCandidate: string = AnyRandom.string(5, 10);
-
-        const result = getAbsolutePath(pathCandidate);
-
-        assert.equal(result, null);
-    });
-
 });

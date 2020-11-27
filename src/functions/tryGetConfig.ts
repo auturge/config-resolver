@@ -1,24 +1,18 @@
-import { getInvalidStringError, getArgumentNullError } from '@src/errors'
+import { getArgumentNullError } from '@src/errors'
 import { ConfigOption } from '@model/ConfigOption'
-import { ResultType } from '@model/ResultType'
+import { IProcessResult } from '@model/IProcessResult'
 import { loadConfig } from './loadConfig'
-import { castToAcceptableTypeOrNull } from './castToAcceptableTypeOrNull'
 import { validateType } from './validateType'
+import { validatePath } from './validatePath'
 
-export function tryGetConfig(options: ConfigOption): ResultType {
+export function tryGetConfig(options: ConfigOption): IProcessResult {
     // Whatever is passed in, validate it's parts
     if (!options) throw getArgumentNullError('options')
+    const path = validatePath(options.path);
+    const type = validateType(options.type);
 
-    if (!options.path || !options.path.trim())
-        throw getInvalidStringError(options.path)
+    const pathInfo: IProcessResult = new IProcessResult(path, type);
 
-    const type = validateType(options.type)
-
-    // The options passed validation, so resolve the config.
-    const path = options.path.trim()
-
-    const configObject = loadConfig(path)
-    if (!configObject) return null
-
-    return castToAcceptableTypeOrNull(configObject, type)
+    const loadConfigResult = loadConfig(pathInfo)
+    return loadConfigResult;
 }
