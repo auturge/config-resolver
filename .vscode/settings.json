@@ -152,7 +152,7 @@
     "prettier.endOfLine": "lf",
     "prettier.printWidth": 80,
     "prettier.quoteProps": "consistent",
-    "prettier.semi": false,
+    "prettier.semi": true,
     "prettier.singleQuote": true,
     "prettier.tabWidth": 4,
     "prettier.trailingComma": "es5",

@@ -1,8 +1,8 @@
 import { assert } from "chai";
-import { ConfigOption } from '@model/ConfigOption';
-import { AcceptableType } from '@model/AcceptableType';
 import { AnyRandom } from "@auturge/testing";
-import { tryGetConfig } from '@src/functions/tryGetConfig';
+import { AcceptableType } from '@model/AcceptableType';
+import { ConfigOption } from '@model/ConfigOption';
+import { tryGetConfig } from '@functions/tryGetConfig';
 
 describe('tryGetConfig', () => {
     [
