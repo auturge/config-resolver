@@ -1,14 +1,7 @@
-import { ConfigOption } from "@model/ConfigOption";
+export function getRequiredConfigMissingError(path: string): Error {
+    let message = `A config file was specified, but could not be resolved: ${ path }`;
 
-export function getRequiredConfigMissingError(config?: ConfigOption): Error {
-    let message = `A config file was specified, but could not be resolved`;
-    if (arguments.length > 0) {
-        message += `: ${JSON.stringify(config)}`;
-    } else {
-        message += ".";
-    }
-
-    const result = new Error(message);
-    result.name = "RequiredConfigMissingError";
-    return result;
+    const error = new Error(message);
+    error.name = "RequiredConfigMissingError";
+    return error;
 }

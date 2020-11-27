@@ -1,9 +1,8 @@
 import * as path from 'path';
 import { getInvalidStringError } from '@src/errors';
-import { pathExists } from './pathExists';
 
-/** Given a relative or absolute path, returns the absolute path. If the path does not exist, returns `null`. */
-export function getAbsolutePath(pathCandidate: string): string | null {
+/** Given a relative or absolute path, returns the absolute path. */
+export function getAbsolutePath(pathCandidate: string): string {
     if (!pathCandidate || !pathCandidate.trim().length)
         throw getInvalidStringError(pathCandidate);
 
@@ -15,5 +14,5 @@ export function getAbsolutePath(pathCandidate: string): string | null {
         absolutePath = path.resolve(process.cwd(), pathCandidate);
     }
 
-    return pathExists(absolutePath) ? absolutePath : null;
+    return absolutePath;
 }

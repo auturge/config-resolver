@@ -1,44 +1,33 @@
-import { assert } from 'chai'
-import { resolveConfig } from '@src/resolveConfig'
-import { ResolverOptions } from '@model/ResolverOptions'
-import { AcceptableType } from '@model/AcceptableType'
-import { FunctionType } from '@model/FunctionType'
-import { AnyRandom } from '@auturge/testing'
+import { assert } from 'chai';
+import { AnyRandom } from '@auturge/testing';
 
-describe('resolveConfig', () => {
-    let config
+import { resolveConfig } from '@src/resolveConfig';
+import { ResolverOptions } from '@model/ResolverOptions';
+import { AcceptableType } from '@model/AcceptableType';
+import { FunctionType } from '@model/FunctionType';
+
+describe('resolveConfig - INTEGRATION', () => {
+
+    let config;
 
     const expected_JSON = {
         source: './package.json',
         destination: './build/dev/package.json',
-        keeplist: ['name', 'version'],
-        trimlist: ['main', 'repository'],
-        loglevel: 'DEBUG',
-    }
+        keeplist: [ 'name', 'version' ],
+        trimlist: [ 'main', 'repository' ],
+        loglevel: 'DEBUG'
+    };
 
     function expected_JS(env) {
         return {
             source: './package.json',
             destination: './build/dev/package.json',
-            keeplist: ['name', 'version'],
-            trimlist: ['main', 'repository'],
+            keeplist: [ 'name', 'version' ],
+            trimlist: [ 'main', 'repository' ],
             loglevel: 'DEBUG',
-            env: env,
-        }
+            env: env
+        };
     }
-
-    ;[
-        { key: 'null', value: null },
-        { key: 'undefined', value: undefined },
-    ].forEach(({ key, value }) => {
-        it(`resolve - when called with ${key}, throws an error`, () => {
-            const options: ResolverOptions = <any>value // eslint-disable-line @typescript-eslint/no-explicit-any
-
-            assert.throws(() => {
-                resolveConfig(options)
-            })
-        })
-    })
 
     it('resolve - golden path - explicit, function (AcceptableType) - with args', () => {
         const options: ResolverOptions = {
@@ -112,7 +101,7 @@ describe('resolveConfig', () => {
         assert.isNotNull(config)
         assert.deepEqual(config, expected)
     })
-    
+
     it('resolve - golden path - explicit, json (string)', () => {
         const options: ResolverOptions = {
             explicit: {
@@ -136,7 +125,7 @@ describe('resolveConfig', () => {
                 type: AnyRandom.string(),
             },
         }
-        
+
         assert.throws(() => {
             resolveConfig(options)
         })
@@ -228,41 +217,5 @@ describe('resolveConfig', () => {
         })
 
         assert.isNull(config)
-    })
-
-    it('resolve - throws when explicit is not specified, and alternatives list is empty', () => {
-        const options: ResolverOptions = {
-            alternatives: [],
-        }
-
-        assert.throws(() => {
-            config = resolveConfig(options)
-        })
-    })
-
-    it(`resolve - when called with an empty config, throws an error`, () => {
-        const options: ResolverOptions = {}
-
-        assert.throws(() => {
-            resolveConfig(options)
-        })
-    })
-    ;[
-        { key: 'explicit is null', value: { explicit: null } },
-        { key: 'explicit is undefined', value: { explicit: undefined } },
-        { key: 'alternatives is null', value: { alternatives: null } },
-        {
-            key: 'alternatives is undefined',
-            value: { alternatives: undefined },
-        },
-        { key: 'alternatives is empty', value: { alternatives: [] } },
-    ].forEach(({ key, value }) => {
-        it(`resolve - when ${key}, throws an error`, () => {
-            const options: ResolverOptions = <any>value // eslint-disable-line @typescript-eslint/no-explicit-any
-
-            assert.throws(() => {
-                config = resolveConfig(options)
-            })
-        })
     })
 })

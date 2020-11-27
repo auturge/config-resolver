@@ -1,8 +1,11 @@
 import * as sinon from "sinon";
 import { assert } from "chai";
-import { AnyRandom } from "@auturge/testing";
+import { AnyRandom, CharacterSet } from "@auturge/testing";
+
+import { IProcessResult } from '@model/IProcessResult';
 import { loadConfig } from '@src/functions/loadConfig';
 import * as paths from '@src/functions/getAbsolutePath';
+import * as pathExists from '@src/functions/pathExists';
 import * as rekwire from '@src/functions/rekwire';
 
 describe('loadConfig', () => {
@@ -10,37 +13,39 @@ describe('loadConfig', () => {
     [
         { key: 'null', value: null },
         { key: 'undefined', value: undefined },
-        { key: 'empty string', value: '' },
-        { key: 'whitespace only', value: '  ' }
     ].forEach(({ key, value }) => {
-        it(`loadConfig - when path is ${key}, throws an error`, () => {
-            const pathCandidate: string = <any>value; // eslint-disable-line @typescript-eslint/no-explicit-any
+        it(`loadConfig - when data is ${ key }, throws an error`, () => {
+            const data: IProcessResult = <any>value; // eslint-disable-line @typescript-eslint/no-explicit-any
 
             assert.throws(() => {
-                loadConfig(pathCandidate);
+                loadConfig(data);
             });
         });
     });
 
-    let getPathSpy, requireSpy;
+    let getPathSpy, requireSpy, pathExistsSpy;
     before(() => {
         getPathSpy = sinon.stub(paths, 'getAbsolutePath').callsFake((path: string) => path);
         requireSpy = sinon.stub(rekwire, "rekwire").throws();
+        pathExistsSpy = sinon.stub(pathExists, 'pathExists').returns(true);
     })
 
     after(() => {
         (<any>(paths.getAbsolutePath)).restore(); // eslint-disable-line @typescript-eslint/no-explicit-any
         (<any>(rekwire.rekwire)).restore(); // eslint-disable-line @typescript-eslint/no-explicit-any
+        (<any>(pathExists.pathExists)).restore(); // eslint-disable-line @typescript-eslint/no-explicit-any
     })
 
     it(`loadConfig - when an error occurs loading the file, throws an error`, () => {
-        const pathCandidate: string = AnyRandom.string(5, 10);
+        const data: IProcessResult = IProcessResult.EMPTY;
+        data.path = AnyRandom.string(5, 10, CharacterSet.ALPHANUMERIC);
+        data.absolutePath = AnyRandom.string(5, 10, CharacterSet.ALPHANUMERIC);
 
         assert.throws(() => {
-            loadConfig(pathCandidate);
+            loadConfig(data);
         });
 
-        sinon.assert.calledOnceWithExactly(getPathSpy, pathCandidate);
-        sinon.assert.calledOnceWithExactly(requireSpy, pathCandidate);
+        sinon.assert.calledOnceWithExactly(getPathSpy, data.absolutePath);
+        sinon.assert.calledOnceWithExactly(requireSpy, data.absolutePath);
     });
 });

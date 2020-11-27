@@ -30,7 +30,7 @@
   "scripts": {
     "build": "npm run ~rollup",
     "test": "npm-run-all ~test:clean ~test:run",
-    "clean": "shx rm -rf dist build",
+    "clean": "shx rm -rf dist build test/coverage",
     "lint": "eslint . --ext .ts,.tsx",
     "package": "npm-run-all clean ~rollup ~copy",
     "~copy": "npm-run-all ~copy:package:json ~copy:readme ~copy:license ~copy:changelog",
