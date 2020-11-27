@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { FunctionType } from '@src/model';
+import { FunctionType } from '@model/FunctionType';
 
 describe('FunctionType', () => {
 

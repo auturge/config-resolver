@@ -1,5 +1,5 @@
 import { ConfigOption } from "@model/ConfigOption";
-import { getArgumentNullError } from '@src/errors';
+import { getArgumentNullError } from '@errors/getArgumentNullError';
 
 /** Sort the alternatives by priority (in ascending order, where NO priority == top priority) */
 export function sortAlternatives(alternatives: ConfigOption[]): ConfigOption[] {
