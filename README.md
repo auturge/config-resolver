@@ -11,10 +11,10 @@
 
 -   [About](#about)
     -   [How to install](#how-to-install)
--   [Getting started](#getting-started-(examples))
-    -   [Example: JSON config file](#example:-json-config-file)
-    -   [Example: config file exporting a JS function](#example:-JavaScript-function-config-file )
-    -   [Example: JavaScript config file exporting a JSON object](#EXAMPLE:-JavaScript-config-file-exporting-a-JSON-object)
+-   [Getting started](#getting-started-examples)
+    -   [Example: JSON config file](#example-json-config-file)
+    -   [Example: config file exporting a JS function](#example-JavaScript-function-config-file )
+    -   [Example: JavaScript config file exporting a JSON object](#EXAMPLE-JavaScript-config-file-exporting-a-JSON-object)
 -   [Contributing and Internal Documentation](#contributing-and-internal-documentation)
 
 ## About
