@@ -1,0 +1,21 @@
+{
+    "temp-dir": "./test/coverage/.nyc-output",
+    "report-dir": "./test/coverage",
+    "extension": [
+        ".ts"
+    ],
+    "all": true,
+    "check-coverage": false,
+    "statements": 90,
+    "functions": 90,
+    "branches": 75,
+    "lines": 90,
+    "reporter": [
+        "html",
+        "lcov",
+        "text"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ]
+}
