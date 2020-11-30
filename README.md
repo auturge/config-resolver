@@ -1,11 +1,9 @@
-<h1 align="center">config-resolver</h1>
+# <h1 align="center">config-resolver</h1>
 
 <p align="center">
   A function that resolves a config file and returns its content, or null if not found.
 </p>
-<!-- [![npm][npm]][npm-url] -->
-
-[![Build][travis-badge]][travis-url] [![Coverage Status][coverage-badge]][coverage-url]
+[![npm][npm]][npm-url] [![Build][travis-badge]][travis-url] [![Coverage Status][coverage-badge]][coverage-url]
 
 ## Table of Contents
 
@@ -15,6 +13,7 @@
     -   [Example: JSON config file](#example-json-config-file)
     -   [Example: config file exporting a JS function](#example-JavaScript-function-config-file )
     -   [Example: JavaScript config file exporting a JSON object](#EXAMPLE-JavaScript-config-file-exporting-a-JSON-object)
+    -   [Example: Loading a config file from one of several places or formats](#EXAMPLE-Loading-a-config-file-from-one-of-several-places-or-formats)
 -   [Contributing and Internal Documentation](#contributing-and-internal-documentation)
 
 ## About
@@ -203,11 +202,69 @@ console.log(JSON.stringify(config, undefined, 2))
 
 ---
 
+### EXAMPLE: Loading a config file from one of several places or formats
+
+Suppose you want to allow users to place their config files in one of several places, or support multiple formats. Say you want to search for config files with the following precedence (where higher on the list is where we look first):
+```none
+./.trimrc		or	 	./trim.config.js,
+./conf/.trimrc 	or		./conf/trim.config.js
+./conf/demo.config.js
+./conf/demo.config.json
+```
+
+**index.js**
+```JavaScript
+const path = require('path')
+const { resolveConfig } = require('@auturge/config-resolver')
+
+const env = { prod: true }
+const options = {
+    alternatives: [
+        {
+			// another file that does not exist in our demo
+			path: './.trimrc', type: 'json'
+        },
+        {
+			// a file that does not exist in our demo
+			path: './trim.config.js', type: 'function',
+			priority: 0
+        },
+        {
+			// a file that does not exist in our demo
+			path: './conf/trim.config.js', type: 'function',
+			priority: 1
+        },
+        {
+			// another file that does not exist in our demo
+			path: './conf/.trimrc', type: 'json',
+			priority: 1
+        },
+        {
+            path: './conf/demo.config.js'), type: 'function',
+            priority: 2
+        },
+{
+            path: './conf/demo.config.json'), type: 'json',
+            priority: 3
+        },
+    ],
+}
+const config = resolveConfig(options)
+
+console.log(JSON.stringify(config, undefined, 2))
+```
+
+**result**
+
+Using the above code, config-resolver would find and attempt to load `./conf/demo.config.js`.
+
+---
+
 ## Contributing and Internal Documentation
 
 The auturge family welcomes any contributor, small or big. We are happy to elaborate, guide you through the source code and find issues you might want to work on! To get started have a look at our [documentation on contributing][contributing].
 
-[contributing]: https://github.com/auturge/auturge/blob/master/docs/CONTRIBUTING.md
+[contributing]: https://github.com/auturge/config-resolver/blob/master/docs/CONTRIBUTING.md
 [npm]: https://img.shields.io/npm/v/auturge/config-resolver.svg
 [npm-url]: https://www.npmjs.com/package/auturge/config-resolver
 [travis-url]: https://travis-ci.com/github/auturge/config-resolver
