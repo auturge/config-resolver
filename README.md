@@ -269,8 +269,8 @@ Using the above code, config-resolver would find and attempt to load `./conf/dem
 The auturge family welcomes any contributor, small or big. We are happy to elaborate, guide you through the source code and find issues you might want to work on! To get started have a look at our [documentation on contributing][contributing].
 
 [contributing]: https://github.com/auturge/config-resolver/blob/master/docs/CONTRIBUTING.md
-[npm]: https://img.shields.io/npm/v/auturge/config-resolver.svg
-[npm-url]: https://www.npmjs.com/package/auturge/config-resolver
+[npm]: https://img.shields.io/npm/v/@auturge/config-resolver.svg
+[npm-url]: https://www.npmjs.com/package/@auturge/config-resolver
 [travis-url]: https://travis-ci.com/github/auturge/config-resolver
 [travis-badge]: https://api.travis-ci.com/auturge/config-resolver.svg?branch=master
 [coverage-badge]: https://coveralls.io/repos/github/auturge/config-resolver/badge.svg
