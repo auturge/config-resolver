@@ -55,7 +55,7 @@ demo
 
 ### EXAMPLE: JSON config file
 
-**config.json**
+#### config.json
 
 ```JSON
 {
@@ -66,7 +66,7 @@ demo
 }
 ```
 
-**index.js**
+#### index.js
 
 ```JavaScript
 const path = require('path')
@@ -83,7 +83,7 @@ const config = resolveConfig(options)
 console.log(JSON.stringify(config, undefined, 2))
 ```
 
-**result**
+#### result
 
 ```JSON
 {
@@ -101,7 +101,7 @@ console.log(JSON.stringify(config, undefined, 2))
 
 ### EXAMPLE: JavaScript function config file
 
-**config.js**
+#### config.js
 
 ```JavaScript
 module.exports = (env) => {
@@ -122,7 +122,8 @@ module.exports = (env) => {
 }
 ```
 
-**index.js**
+#### index.js
+
 ```JavaScript
 const path = require('path')
 const { resolveConfig } = require('@auturge/config-resolver')
@@ -140,7 +141,7 @@ const config = configFunction(env)
 console.log(JSON.stringify(config, undefined, 2))
 ```
 
-**result**
+#### result
 
 ```JSON
 {
@@ -158,7 +159,7 @@ console.log(JSON.stringify(config, undefined, 2))
 
 ### EXAMPLE: JavaScript config file exporting a JSON object
 
-**config.export.js**
+#### config.export.js
 
 ```JavaScript
 module.exports = {
@@ -169,7 +170,8 @@ module.exports = {
 }
 ```
 
-**index.js**
+#### index.js
+
 ```JavaScript
 const path = require('path')
 const { resolveConfig } = require('@auturge/config-resolver')
@@ -186,7 +188,7 @@ const config = resolveConfig(options)
 console.log(JSON.stringify(config, undefined, 2))
 ```
 
-**result**
+#### result
 
 ```JSON
 {
@@ -205,6 +207,7 @@ console.log(JSON.stringify(config, undefined, 2))
 ### EXAMPLE: Loading a config file from one of several places or formats
 
 Suppose you want to allow users to place their config files in one of several places, or support multiple formats. Say you want to search for config files with the following precedence (where higher on the list is where we look first):
+
 ```none
 ./.trimrc		or	 	./trim.config.js,
 ./conf/.trimrc 	or		./conf/trim.config.js
@@ -212,7 +215,8 @@ Suppose you want to allow users to place their config files in one of several pl
 ./conf/demo.config.json
 ```
 
-**index.js**
+#### index.js
+
 ```JavaScript
 const path = require('path')
 const { resolveConfig } = require('@auturge/config-resolver')
@@ -254,7 +258,7 @@ const config = resolveConfig(options)
 console.log(JSON.stringify(config, undefined, 2))
 ```
 
-**result**
+#### result
 
 Using the above code, config-resolver would find and attempt to load `./conf/demo.config.js`.
 
