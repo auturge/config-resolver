@@ -3,7 +3,10 @@
 <p align="center">
   A function that resolves a config file and returns its content, or null if not found.
 </p>
- [![npm][npm-badge]][npm-url] [![Build][travis-badge]][travis-url] [![Coverage Status][coverage-badge]][coverage-url]
+
+[![npm][npm-badge]][npm-url]
+[![Build][travis-badge]][travis-url]
+[![Coverage Status][coverage-badge]][coverage-url]
 
 ## Table of Contents
 
