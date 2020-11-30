@@ -1,6 +1,6 @@
 {
   "name": "@auturge/config-resolver",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "auturge/config-resolver - finds and loads your config file, or returns null",
   "author": "auturge",
   "license": "MIT",
